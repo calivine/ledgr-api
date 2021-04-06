@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('test', function () {
+Route::get('/test', function () {
     return response('ok');
 });
 

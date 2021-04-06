@@ -19,6 +19,3 @@ Route::get('/', function () {
     return response('ok');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
