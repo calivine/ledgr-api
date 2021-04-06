@@ -16,7 +16,7 @@ use App\Activity;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response('ok');
 });
 
 Auth::routes();
