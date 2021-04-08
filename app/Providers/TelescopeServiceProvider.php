@@ -50,6 +50,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             'cookie',
             'x-csrf-token',
             'x-xsrf-token',
+            'authorization'
         ]);
     }
 
@@ -64,7 +65,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         Gate::define('viewTelescope', function ($user) {
             return in_array($user->email, [
-                //
+                'caloggero.a@gmail.com'
             ]);
         });
     }
