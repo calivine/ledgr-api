@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/test', function () {
-    return response('ok');
-});
-
 Route::group(['middleware' => 'auth:api'], function() {
 
     # GET User.
@@ -29,7 +25,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('transactions', 'ActivityController@store');
 
     # DELETE Transaction
-    Route::delete('transactions', 'ApiController@destroyTransaction');
+    Route::delete('transactions/destroy', 'ApiController@destroyTransaction');
 
     # GET Budget
     Route::get('budget', 'BudgetController@get');

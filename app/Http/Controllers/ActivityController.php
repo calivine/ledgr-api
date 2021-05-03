@@ -23,9 +23,7 @@ class ActivityController extends Controller
 
         try {
             $transactions = Activities::get($user, $payload);
-            $data = [
-                'data' => new ActivityCollection($transactions)
-            ];
+            $data = new ActivityCollection($transactions);
             $status = 200;
         }
         catch (QueryException $e) {

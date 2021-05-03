@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 
-use App\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +14,7 @@ use App\Activity;
 */
 
 Route::get('/', function () {
-    return response('ok');
+    // return response(null,403);
+    abort(403);
 });
 
