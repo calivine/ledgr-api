@@ -13,7 +13,7 @@ class ActivityController extends Controller
     /**
      * Get Transactions action
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return
      */
     public function get(Request $request)
     {
@@ -41,7 +41,7 @@ class ActivityController extends Controller
 
         }
         finally {
-            return response()->json($data, $status);
+            return $data;
         }
 
     }

@@ -14,6 +14,9 @@ class ActivityCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [$this->collection];
+        return [
+            'url' => $request->fullUrl(),
+            'data' => $this->collection
+        ];
     }
 }
