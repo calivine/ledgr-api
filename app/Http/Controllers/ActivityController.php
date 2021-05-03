@@ -22,23 +22,19 @@ class ActivityController extends Controller
 
 
         try {
-            $transactions = Activities::get($user, $payload);
-            $data = new ActivityCollection($transactions);
-            $status = 200;
+            $data = new ActivityCollection(Activities::get($user, $payload));
         }
         catch (QueryException $e) {
             $data = [
-                'message' => $e
+                'message' => $e,
+                'status' => 400
             ];
-            $status = 400;
-
         }
         catch (Throwable $e) {
             $data = [
-                'message' => $e
+                'message' => $e,
+                'status' => 400
             ];
-            $status = 400;
-
         }
         finally {
             return $data;
