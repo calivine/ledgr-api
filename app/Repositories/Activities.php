@@ -28,22 +28,13 @@ class Activities
 
 
 
-        if (count($payload) > 1)
-        {
-            $params = Arr::except($payload, ['api_token']);
+        $values = array_values($payload);
+        $keys = array_keys($payload);
 
-            $values = array_values($params);
-            $keys = array_keys($params);
-
-            $keys = array_map('add_db_prefix', $keys);
-            $params = array_combine($keys, $values);
-            $data = $data->where($params)
-                         ->get();
-        }
-        else
-        {
-            $data = $data->get();
-        }
+        $keys = array_map('add_db_prefix', $keys);
+        $params = array_combine($keys, $values);
+        $data = $data->where($params)
+            ->get();
 
         return $data;
     }

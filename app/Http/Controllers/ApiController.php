@@ -12,6 +12,14 @@ use Log;
 
 class ApiController extends Controller
 {
+
+    public function get(Request $request)
+    {
+        $payload = $request->query();
+        $url = $request->fullUrl();
+        $user = $request->user()->id;
+    }
+
     /**
      * Get Transactions action
      * @param Request $request
