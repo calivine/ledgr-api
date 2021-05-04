@@ -15,30 +15,25 @@ class BudgetController extends Controller
         $user = $request->user()->id;
 
         try {
-            $budget = Budgets::get($user, $payload);
-            $data = [
-                'data' => new BudgetCollection($budget)
-            ];
-            $status = 200;
+
+            $data =  new BudgetCollection(Budgets::get($user, $payload));
         }
         catch (QueryException $e) {
             $data = [
-                'message' => $e
+                'message' => $e,
+                'status' => 400
             ];
-            $status = 400;
+
 
         }
         catch (Throwable $e) {
             $data = [
-                'message' => $e
+                'message' => $e,
+                'status' => 400
             ];
-            $status = 400;
-
         }
         finally {
-            return response()->json($data, $status);
+            return $data;
         }
-
-
     }
 }
