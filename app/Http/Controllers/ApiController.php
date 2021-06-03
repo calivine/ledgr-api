@@ -9,9 +9,15 @@ use Facades\App\Repositories\Activities;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Log;
+use Hash;
+use App\User;
 
 class ApiController extends Controller
 {
+    public function test()
+    {
+        return response()->json('OK', 200);
+    }
 
     public function get(Request $request)
     {
@@ -53,6 +59,30 @@ class ApiController extends Controller
         finally {
             return response()->json($data, $status);
         }
+
+    }
+
+    public function login(Request $request)
+    {
+
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $user = User::where([
+            ['email', '=', $username]
+        ])->select('password', 'name', 'email', 'api_token')->first();
+
+        if (Hash::check($password, $user['password'])) {
+
+            return response()->json([
+                'data' => $user
+            ], 200);
+        }
+        else
+        {
+            return response()->json(['data' => 'Bad Login'], 403);
+        }
+
 
     }
 
