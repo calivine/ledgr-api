@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ActivityCollection;
 use App\Pending;
-use App\Repositories\PendingActivities;
+
+use Facades\App\Repositories\PendingActivities;
 use Facades\App\Repositories\Activities;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
