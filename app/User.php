@@ -50,4 +50,11 @@ class User extends Authenticatable
         # Defines A One-To-Many Relationship
         return $this->hasMany('App\Budget');
     }
+
+    public function pending()
+    {
+        # User has many pending activities
+        # Define a many-to-many relationship
+        return $this->hasMany('App\Pending');
+    }
 }

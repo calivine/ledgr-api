@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ActivityCollection;
+use App\Pending;
+use App\Repositories\PendingActivities;
 use Facades\App\Repositories\Activities;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -49,8 +51,17 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
+        $request->path();
+        if ($request->path() == "transactions/pending")
+        {
+            $activity = PendingActivities::create($request);
+        }
+        else
+        {
+            $activity = Activities::create($request);
+        }
         Log::info('Storing activity');
-        $activity = Activities::create($request);
+        // $activity = Activities::create($request);
 
         return response()->json([
             'data' => $activity

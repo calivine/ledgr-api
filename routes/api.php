@@ -33,5 +33,11 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     # POST Create New Category
     Route::post('budget', 'ApiController@storeCategory');
+
+    # POST Create new Pending transaction
+    Route::post('transactions/pending', 'ActivityController@store');
+
+    # GET Pending Transactions
+    Route::get('transactions/pending', 'ActivityController@get');
 });
 
