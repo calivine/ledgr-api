@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BudgetCollection;
 use App\Http\Resources\PendingCollection;
-use App\Repositories\PendingActivities;
+use Facades\App\Repositories\PendingActivities;
 use Facades\App\Repositories\Budgets;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
