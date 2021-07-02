@@ -17,17 +17,13 @@ class BudgetController extends Controller
         $user = $request->user()->id;
 
         try {
-            /**
-            $budgetData = new BudgetCollection(Budgets::get($user, $payload));
-            $pendingTransactions = new PendingCollection(PendingActivities::get($user));
-
+            
             $data = [
                 'url' => $request->fullUrl(),
-                'data' => ['budget' => $budgetData,
-                           'pending' => $pendingTransactions]
+                'data' => ['budget' => new BudgetCollection(Budgets::get($user, $payload)),
+                           'pending' => new PendingCollection(PendingActivities::get($user))]
             ];
-             */
-            $data =  new BudgetCollection(Budgets::get($user, $payload));
+
         }
         catch (QueryException $e) {
             $data = [
