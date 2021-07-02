@@ -15,15 +15,15 @@ class BudgetController extends Controller
     {
         $payload = $request->query();
         $user = $request->user()->id;
+        $budgetData = new BudgetCollection(Budgets::get($user, $payload));
+        $pendingActivities = new PendingCollection(PendingActivities::get($user));
+        $responsePayload = ['budget' => $budgetData, 'pending' => $pendingActivities];
 
         try {
-            
             $data = [
                 'url' => $request->fullUrl(),
-                'data' => ['budget' => new BudgetCollection(Budgets::get($user, $payload)),
-                           'pending' => new PendingCollection(PendingActivities::get($user))]
+                'data' => $responsePayload
             ];
-
         }
         catch (QueryException $e) {
             $data = [
