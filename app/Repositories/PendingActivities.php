@@ -4,6 +4,8 @@
 namespace App\Repositories;
 
 use App\Pending;
+use DB;
+use Illuminate\Http\Request;
 
 class PendingActivities
 {
@@ -16,6 +18,15 @@ class PendingActivities
         $activity = $request->input('text');
 
         return $this->storeActivity($activity, $user);
+
+    }
+
+    public function get($user)
+    {
+        $data = DB::table('pendings')
+            ->where('user_id', '=', $user)
+            ->get();
+        return $data;
 
     }
 

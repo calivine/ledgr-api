@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BudgetCollection;
+use App\Http\Resources\PendingCollection;
+use App\Repositories\PendingActivities;
 use Facades\App\Repositories\Budgets;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -15,8 +17,15 @@ class BudgetController extends Controller
         $user = $request->user()->id;
 
         try {
+            $budgetData = new BudgetCollection(Budgets::get($user, $payload));
+            $pendingTransactions = new PendingCollection(PendingActivities::get($user));
 
-            $data =  new BudgetCollection(Budgets::get($user, $payload));
+            $data = [
+                'url' => $request->fullUrl(),
+                'data' => ['budget' => $budgetData,
+                           'pending' => $pendingTransactions]
+            ];
+            // $data =  new BudgetCollection(Budgets::get($user, $payload));
         }
         catch (QueryException $e) {
             $data = [

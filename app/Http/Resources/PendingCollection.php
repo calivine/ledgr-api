@@ -1,10 +1,13 @@
 <?php
 
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class BudgetCollection extends ResourceCollection
+
+
+class PendingCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -18,4 +21,5 @@ class BudgetCollection extends ResourceCollection
             $this->collection
         ];
     }
+
 }

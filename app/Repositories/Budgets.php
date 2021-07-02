@@ -20,9 +20,7 @@ class Budgets
     public function get($user, $payload)
     {
         $data = DB::table('budgets')
-            ->join('pendings', 'budgets.user_id', '=', 'pendings.user_id')
-            ->where('budgets.user_id', '=', $user)
-            ->where('pendings.approved', '=', false);
+            ->where('user_id', '=', $user);
 
 
         if (count($payload) > 1)
