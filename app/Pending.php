@@ -23,4 +23,15 @@ class Pending extends Model
             return $this->text;
         }
     }
+
+    public function approved($value = null)
+    {
+        if ($value == null) {
+            return $this->approved;
+        }
+        else {
+            $this->approved = $value;
+            return $this->approved;
+        }
+    }
 }

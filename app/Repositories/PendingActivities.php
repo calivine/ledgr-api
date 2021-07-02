@@ -25,8 +25,11 @@ class PendingActivities
         $pendingActivity = new Pending();
         $pendingActivity->text($activity);
         $pendingActivity->user()->associate($user);
+        // $pendingActivity->approved(false);
         $pendingActivity->save();
         return $pendingActivity;
     }
+
+
 
 }

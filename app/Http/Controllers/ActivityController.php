@@ -22,6 +22,10 @@ class ActivityController extends Controller
     {
         $payload = $request->query();
         $user = $request->user()->id;
+        if ($request->path() == "transactions/pending")
+        {
+
+        }
 
 
         try {
