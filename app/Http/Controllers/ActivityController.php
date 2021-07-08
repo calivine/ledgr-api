@@ -70,6 +70,7 @@ class ActivityController extends Controller
         if (count($request->query()) > 0) {
             $pending = Pending::find($request->input('id'));
             $pending->approved = true;
+            $pending->save();
             //Pending::find($request->input('id'))->approved = true;
         }
 
