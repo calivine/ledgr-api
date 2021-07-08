@@ -25,6 +25,7 @@ class PendingActivities
     {
         $data = DB::table('pendings')
             ->where('user_id', '=', $user)
+            ->where('approved', '=', false)
             ->get();
         return $data;
 
