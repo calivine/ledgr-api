@@ -57,6 +57,8 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $request->path();
+
+        $request->query();
         if ($request->path() == "transactions/pending")
         {
             $activity = PendingActivities::create($request);
@@ -65,6 +67,12 @@ class ActivityController extends Controller
         {
             $activity = Activities::create($request);
         }
+        if (count($request->query()) > 0) {
+            $pending = Pending::find($request->input('id'));
+            $pending->approved = true;
+            //Pending::find($request->input('id'))->approved = true;
+        }
+
         Log::info('Storing activity');
         // $activity = Activities::create($request);
 
